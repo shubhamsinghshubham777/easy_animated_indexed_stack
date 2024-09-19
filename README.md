@@ -2,6 +2,10 @@
 
 A drop-in replacement for Flutter's default `IndexedStack` that allows simple animations to transition between widgets/screens/pages.
 
+## Demo
+
+https://github.com/user-attachments/assets/12f05c41-a865-4f83-84af-753f4aae090a
+
 ## Getting Started
 
 Add the dependency in your `pubspec.yaml` file:
