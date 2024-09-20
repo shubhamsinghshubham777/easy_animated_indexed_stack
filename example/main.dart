@@ -22,6 +22,14 @@ class _MainAppState extends State<MainApp> {
         // Simply replaced `IndexedStack` with `EasyAnimatedIndexedStack`
         body: EasyAnimatedIndexedStack(
           index: selectedIndex,
+          animationBuilder: (context, animation, child) {
+            return RotationTransition(
+              turns: Tween<double>(begin: 1, end: 0).animate(animation),
+              child: child,
+            );
+          },
+          curve: Curves.easeInOut,
+          duration: const Duration(milliseconds: 700),
           children: [
             ScreenA(onTap: () => setState(() => selectedIndex = 1)),
             ScreenB(onTap: () => setState(() => selectedIndex = 2)),

@@ -1,6 +1,6 @@
 name: easy_animated_indexed_stack
 description: "A drop-in replacement for Flutter's default IndexedStack widget that allows simple animations to transition between widgets"
-version: 0.0.2
+version: 0.0.3
 repository: https://github.com/shubhamsinghshubham777/easy_animated_indexed_stack
 
 environment:
