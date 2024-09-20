@@ -4,7 +4,7 @@ A drop-in replacement for Flutter's default `IndexedStack` that allows simple an
 
 ## Demo
 
-<img src="https://github.com/user-attachments/assets/12f05c41-a865-4f83-84af-753f4aae090a" height=600 />
+<img src="https://github.com/user-attachments/assets/422cbbcd-8e11-43d7-acf3-fa06787118e9" width=300 />
 
 ## Getting Started
 
