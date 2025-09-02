@@ -18,6 +18,8 @@ class EasyAnimatedIndexedStack extends StatefulWidget {
     this.duration = const Duration(milliseconds: 200),
     this.curve = Curves.easeInOut,
     this.animationBuilder,
+    this.skipStart = false,
+    this.skipEnd = false,
   });
 
   /// How to align the non-positioned and partially-positioned children in the
@@ -66,6 +68,12 @@ class EasyAnimatedIndexedStack extends StatefulWidget {
   /// An optional custom animation builder function.
   final AnimationBuilder? animationBuilder;
 
+  /// Skips the first half of the provided animation.
+  final bool skipStart;
+
+  /// Skips the second half of the provided animation.
+  final bool skipEnd;
+
   @override
   State<EasyAnimatedIndexedStack> createState() =>
       _EasyAnimatedIndexedStackState();
@@ -108,15 +116,21 @@ class _EasyAnimatedIndexedStackState extends State<EasyAnimatedIndexedStack>
     // If the index of the IndexedStack has changed, animate a transition to the
     // new index.
     if (oldWidget.index != widget.index) {
-      _animationController.animateTo(1).then((_) {
-        // Animate the child widgets out by setting their opacity to 0.
-        setState(() => _currentIndex = widget.index);
-
-        // Once the animation has completed, animate the new child widget in.
-        _animationController.animateTo(0);
-      });
+      _runAnimation();
     }
     super.didUpdateWidget(oldWidget);
+  }
+
+  Future<void> _runAnimation() async {
+    widget.skipStart
+        ? _animationController.value = 1
+        : await _animationController.animateTo(1);
+    // Animate the child widgets out by setting their opacity to 0.
+    setState(() => _currentIndex = widget.index);
+    // Once the animation has completed, animate the new child widget in.
+    widget.skipEnd
+        ? _animationController.value = 0
+        : await _animationController.animateTo(0);
   }
 
   @override
